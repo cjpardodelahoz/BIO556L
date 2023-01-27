@@ -1,15 +1,15 @@
 ## Setup and intro to Unix basics
 
-#### Logging into the Duke Computer Cluster
+### Logging into the Duke Computer Cluster
 Open a terminal (MacOS, Linux) or command prompt (Windows) and log into the Duke Computer Cluster by typing:
 ```sh
 ssh YOURNETID@dcc-login.oit.duke.edu 
 ```
 You will be asked for your password and MFA. Keep in mind that you won't see the characters of your password when you are typing. Don't worry, the terminal is still getting them!
 
-#### Where am I?
+### Where am I?
 When you log in, you are using a login *node* in your `${HOME}` directory. You can type `pwd`(**p**rint **w**orking **d**irectory) and hit enter and you will see the full path to your `${HOME}`. It should be something like `/hpc/home/YOURNETID`.
-### How do I navigate directories?
+#### How do I navigate directories?
 Now let's navigate to the class directory using the `cd` (**c**hange **d**irectory) command and the *path* to the directory where you want to go:
 ```
 cd /hpc/group/bio556l-s23/
@@ -18,7 +18,7 @@ If you type `pwd` again, you should see the path that you just navigated to. We 
 
 You can think of navigation in the command line as moving up and down a tree of directories represented by their paths. To move down, you simply need to type the path downstream of where you are. For example, if you are in `/hpc` and you want to go to `/hpc/group/bio556l-s23`, you can do `cd group/bio556l-s23`. If you get there, and you want to move back up to `/hpc`, you can do `cd ../../`. When moving up, every `../` brings you up one directory level in that path.
 ### What is in this directory?
-You can type `ls` and hit enter. This will **l**i**s**t the contents of the currernt directory. In this case, you will another directory called `source`.
+You can type `ls` and hit enter. This will **l**i**s**t the contents of the currernt directory. In this case, you will see another directory called `source`.
 ### Creating new directories
 You can **m**a**k**e a new **dir**ectory using the command `mkdir`. Go ahead and make a directory with the same name as your netid:
 ```sh
@@ -45,7 +45,7 @@ mkdir -p scripts/week3
 ```
 If you do `ls`, you will now see the scripts directory. And if you do `ls scripts/` it will list the contents of the `scripts` directory, where you will also see the subdirectory `week3`.
 ### Copying files
-You can **c**o**p**y files using the command `cp PATH/TO/ORIGINAL PATH/TO/COPY`. This works for individual  files within a single directory. If you want to copy a directory and its contents, you can add the `-r` flag, which will copy files and subdirectories **r*ecursively. For today's class, we'll need the contents of the `/hpc/group/bio556l-s23/source/week3` directory. Go ahead and copy all the contents of that directory into your `class_activities` directory:
+You can **c**o**p**y files using the command `cp PATH/TO/ORIGINAL PATH/TO/COPY`. This works for individual  files within a single directory. If you want to copy a directory and its contents, you can add the `-r` flag, which will copy files and subdirectories **_r**ecursively_. For today's class, we'll need the contents of the `/hpc/group/bio556l-s23/source/week3` directory. Go ahead and copy all the contents of that directory into your `class_activities` directory:
 ```sh
 cp -r ../source/week3 class_activities/week3
 ```
@@ -65,14 +65,14 @@ To request resources that will be allocated to an interactive session, we do:
 ```sh
 srun --pty bash -i
 ```
-This will indicate that we want to use bash as the interpreter for the command line. When the resources are allocated, our interactive session will reserve a jobID. We can use that later to cancel the session (`scancel jobID`) or get performance statistics. By default, the `srun` command asks for 1 cpu core, in a single node, and with 2GB of memory. We can change all of those defaults using the flags `-c' for number of cpu cores, `-n` for number of nodes, and `--mem` for RAM. For example (note that you need to cancel the previous session before running this):
+This will indicate that we want to use bash as the interpreter for the command line. When the resources are allocated, our interactive session will reserve a jobID. We can use that later to cancel the session (`scancel jobID`) or get performance statistics. By default, the `srun` command asks for 1 cpu core, in a single node, and with 2GB of memory. We can change all of those defaults using the flags `-c` for number of cpu cores, `-n` for number of nodes, and `--mem` for RAM. For example (note that you need to cancel the previous session before running this):
 ```sh
 srun -c 2 --mem=4G --pty bash -i 
 ```
 will request an interactive session with 2 cpu cores and 4 GB of RAM. These resources will be enough for the alignments we will conduct.
 
 ## Protein-coding sequence alignment with MAFFT and PAL2NAL
-We are almost ready to replicate our analysis in the command line! The last bit of set up involves making sure that we have access to the software that we need: MAFFT and PAL2NAL. We will learn later in class how to build and install command live versions of phylogenetic software. But for today, we will use a pre-existing installation. In order to use it, we have to tell the command line where these programs are. One way that facilitates accesing them is by having them on our ${PATH} variable. The ${PATH} variable is sort of like a speed dial for directory paths. You can access files and programs that are in that variable without having to type their full path. So, let's add the installations of MAFFT and PAL2NAL to our `${PATH}` variable:
+We are almost ready to replicate our analysis in the command line! The last bit of set up involves making sure that we have access to the software that we need: MAFFT and PAL2NAL. We will learn later in class how to build and install command live versions of phylogenetic software. But for today, we will use a pre-existing installation. In order to use it, we have to tell the command line where these programs are. One way that facilitates accesing them is by having them on our `${PATH}`` variable. The `${PATH}` variable is sort of like a speed dial for directory paths. You can access files and programs that are in that variable without having to type their full path. So, let's add the installations of MAFFT and PAL2NAL to our `${PATH}` variable:
 ```sh
 # Adding path to MAFFT
 export PATH=/hpc/home/cjp47/mafft-7.475-with-extensions/bin:${PATH}
@@ -84,7 +84,7 @@ Now, we have the executables of MAFFT and PAL2NAL on speedial. So we can access 
 mafft -h
 pal2nal.pl -h
 ```
-That should display the help menus of both programs. An we are ready!
+That should display the help menus of both programs. And we are ready!
 
 Let's align the betatubulin nucleotide sequences. The basic syntax for MAFFT is `mafft OPTIONS PATH/TO/INPUT > PATH/TO/OUTPUT`. For example:
 ```sh
