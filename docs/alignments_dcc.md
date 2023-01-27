@@ -1,6 +1,8 @@
-[Setup and intro to Unix basics](##setup)
+## Contents
 
-[Requesting resources for an interactive session in the DCC](##resources)
+* **[Setup and intro to Unix basics](#setup)**
+* **[Requesting resources for an interactive session in the DCC](#resources)**
+* **[Protein-coding sequence alignment with MAFFT and PAL2NAL](#alignment)**
 
 <a name="setup"></a>
 ## Setup and intro to Unix basics
@@ -88,6 +90,7 @@ srun -c 2 --mem=4G --pty bash -i
 ```
 will request an interactive session with 2 cpu cores and 4 GB of RAM. These resources will be enough for the alignments we will conduct.
 
+<a name="alignment"></a>
 ## Protein-coding sequence alignment with MAFFT and PAL2NAL
 We are almost ready to replicate our analysis in the command line! The last bit of set up involves making sure that we have access to the software that we need: MAFFT and PAL2NAL. We will learn later in class how to build and install command live versions of phylogenetic software. But for today, we will use a pre-existing installation. In order to use it, we have to tell the command line where these programs are. One way that facilitates accesing them is by having them on our `${PATH}` variable. The `${PATH}` variable is sort of like a speed dial for directory paths. You can access files and programs that are in that variable without having to type their full path. So, let's add the installations of MAFFT and PAL2NAL to our `${PATH}` variable:
 
