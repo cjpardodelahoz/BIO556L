@@ -13,5 +13,5 @@ ___
 ### Aligning sequences using the MAFFT online server
 
 For this example we will use sequences from the beta-tubuling gene in lichen-forming fungi. In your favorite text editor, open the file `week3/seqs/betatub/peltigera_betatub.fasta`
-![betatubfasta](images/	week3/betatub_seqs.png)
+![betatubfasta](docs/images/alignments/betatub_seqs.png)
 
