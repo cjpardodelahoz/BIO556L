@@ -96,14 +96,19 @@ will request an interactive session with 2 cpu cores and 4 GB of RAM. These reso
 
 <a name="alignment"></a>
 ## Protein-coding sequence alignment with MAFFT and PAL2NAL
-We are almost ready to replicate our analysis in the command line! The last bit of set up involves making sure that we have access to the software that we need: MAFFT and PAL2NAL. We will learn later in class how to build and install command live versions of phylogenetic software. But for today, we will use a pre-existing installation. In order to use it, we have to tell the command line where these programs are. One way that facilitates accesing them is by having them on our `${PATH}` variable. The `${PATH}` variable is sort of like a speed dial for directory paths. You can access files and programs that are in that variable without having to type their full path. So, let's add the installations of MAFFT and PAL2NAL to our `${PATH}` variable:
+We are almost ready to replicate our analysis in the command line! The last bit of set up involves making sure that we have access to the software that we need: MAFFT and PAL2NAL. We will learn later in class how to build and install command live versions of phylogenetic software. But for today, we will use a pre-existing installation. In order to use it, we have to tell the command line where these programs are. One way that facilitates accesing them is by having them on our `${PATH}` variable. The `${PATH}` variable is sort of like a speed dial for directory paths. You can access files and programs that are in that variable without having to type their full path. So, let's add the installation of PAL2NAL to our `${PATH}` variable:
 
 ```sh
-# Adding path to MAFFT
-export PATH=/hpc/home/cjp47/mafft-7.475-with-extensions/bin:${PATH}
 # Adding path to PAL2NAL
 export PATH=/hpc/group/bio1/carlos/apps/pal2nal.v14:${PATH}
 ```
+
+For MAFFT, we are going to use a prebuild module that is available on the DCC. To see the available modules, you can type `module avail`. In there, you will see `MAFFT/7.475-rhel8`. You can load this module doing:
+
+```sh
+module load MAFFT/7.475-rhel8
+```
+
 Now, we have the executables of MAFFT and PAL2NAL on speedial. So we can access them regardless of the directory where we are. Try typing:
 
 ```sh
