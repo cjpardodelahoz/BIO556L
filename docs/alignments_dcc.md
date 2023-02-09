@@ -6,6 +6,7 @@ ___
 * **[Setup and intro to Unix basics](#setup)**
 * **[Requesting resources for an interactive session in the DCC](#resources)**
 * **[Protein-coding sequence alignment with MAFFT and PAL2NAL](#alignment)**
+* **[Retrieving your files from the cluster](#retrieve)**
 
 <a name="setup"></a>
 ## Setup and intro to Unix basics
@@ -62,7 +63,7 @@ mkdir -p scripts/week3
 ```
 If you do `ls`, you will now see the scripts directory. And if you do `ls scripts/` it will list the contents of the `scripts` directory, where you will also see the subdirectory `week3`.
 ### Copying files
-You can **c**o**p**y files using the command `cp PATH/TO/ORIGINAL PATH/TO/COPY`. This works for individual  files within a single directory. If you want to copy a directory and its contents, you can add the `-r` flag, which will copy files and subdirectories **_r**ecursively_. For today's class, we'll need the contents of the `/hpc/group/bio556l-s23/source/week3` directory. Go ahead and copy all the contents of that directory into your `class_activities` directory:
+You can **c**o**p**y files using the command `cp PATH/TO/ORIGINAL PATH/TO/COPY`. This works for individual  files within a single directory. If you want to copy a directory and its contents, you can add the `-r` flag, which will copy files and subdirectories **r**ecursively. For today's class, we'll need the contents of the `/hpc/group/bio556l-s23/source/week3` directory. Go ahead and copy all the contents of that directory into your `class_activities` directory:
 
 ```sh
 cp -r ../source/week3 class_activities/week3
@@ -133,3 +134,30 @@ pal2nal.pl class_activities/week3/seqs/rpsc/rpsc_aa_aln.fasta \
  -codontable 11 -output fasta > \
  class_activities/week3/seqs/rpsc/rpsc_na_aln.fasta
 ```
+
+<a name="retrieve"></a>
+## Retrieving your files from the cluster
+
+### Copying files across machines with `scp`
+
+We can **s**ecurely **c**o**p**y files to and from the cluster using the `scp` command. The syntax is the same as for the `cp` command, i.e. `scp PATH/TO/ORIGINAL PATH/TO/COPY`. The only additional thing we need to know is how to specify paths to files or directories that are in the cluster. We do this by specifying the connection to the login node before the absolute path in the cluster:
+
+```sh
+# To push a file to the cluster
+scp LOCAL/PATH YOURNETID@dcc-login.oit.duke.edu:DCC/PATH
+# To pull a file from the cluster
+scp YOURNETID@dcc-login.oit.duke.edu:DCC/PATH LOCAL/PATH
+```
+
+**NOTE:** You should **always** do this `scp` copies while your working directoy is on your local machine, not on the cluster.
+
+As with `cp`, you can use the `-r` with `scp` to copy directories and their contents recursively. For example if you want to copy your class directory to your local machine, you would do:
+
+```sh
+scp -r YOURNETID@dcc-login.oit.duke.edu:/hpc/group/bio556l-s23/YOURNETID \
+ YOUR/DESIRED/LOCAL/PATH
+```
+
+
+ 
+
