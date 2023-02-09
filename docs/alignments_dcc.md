@@ -1,4 +1,4 @@
-# Part 2: Aligments in the command line on the DCC
+# Aligments Part 2: MAFFT in the Command Line on the DCC
 ___
 
 ## Contents

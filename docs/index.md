@@ -5,7 +5,7 @@ I will post the instructions code necessary for the computational exercises that
 
 The first module is on multiple sequence alignments and it is divided in two parts:
 
-[Part 1: Aligments with MAFFT online and Mesquite](https://cjpardodelahoz.github.io/BIO556L/alignments_online)
+[Alignments Part 1: MAFFT Online and Mesquite](https://cjpardodelahoz.github.io/BIO556L/alignments_online)
 
-[Part 2: Aligments in the command line on the DCC](https://cjpardodelahoz.github.io/BIO556L/alignments_dcc)
+[Aligments Part 2: MAFFT in the Command Line on the DCC](https://cjpardodelahoz.github.io/BIO556L/alignments_dcc)
 

@@ -1,4 +1,4 @@
-# Part 1: Aligments with MAFFT online and Mesquite
+# Alignments Part 1: MAFFT Online and Mesquite
 ___
 
 ## Contents
