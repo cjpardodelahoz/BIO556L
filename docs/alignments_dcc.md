@@ -1,3 +1,6 @@
+# PART 2: Aligments in the command line
+___
+
 ## Contents
 
 * **[Setup and intro to Unix basics](#setup)**
