@@ -9,3 +9,6 @@ The first module is on multiple sequence alignments and it is divided in two par
 
 [Alignments Part 2: MAFFT in the Command Line on the DCC](https://cjpardodelahoz.github.io/BIO556L/alignments_dcc)
 
+[Choosing Models of Sequence Evolution](https://cjpardodelahoz.github.io/BIO556L/models)
+
+
