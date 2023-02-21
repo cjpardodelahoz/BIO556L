@@ -89,7 +89,9 @@ iqtree -s class_activities/week6/alignments/Lecanoraceae_v8_MCM7.fas \
 
 The `-s` flag is usef to specify the path to the alignment. The `-pre` flag specifies the path prefix that will be used to store the output files. In this case, all output files will be written in the directory `class_activities/week6/model_selection`, and all files names will start with `lecanoraceae_mcm7_unpart`
 
-IQ-TREE will print the log to the *STDOUT*. We can also check the output files written in the specify directory:
+IQ-Tree will evaluate 258 models, which are a combination of different base substitution rate matrices (e.g. GTR), base frequencies (e.g. +F), and heterogeneity (e.g. +G4) parameters. Check out [this link](http://www.iqtree.org/doc/Substitution-Models) for a comprehensive list of the substitution models considered by iqtree. 
+
+The log be printed to the *STDOUT*. We can also check the output files written in the specify directory:
 
 ```sh
 ls class_activities/week6/model_selection/lecanoraceae_mcm7_unpart*
@@ -108,15 +110,15 @@ nano class_activities/week6/model_selection/lecanoraceae_mcm7_unpart.iqtree
 
 ### Making a partition file
 
-To choose different models for different partitions, and partition schemes, we need to specify the character sets that correspond to different partitions. Ideally, we should define the partitions in the most granular and biologically meaningful way possible. This will typically involve separating intros from CDS, and splitting CDS into the three codon positions. For the MCM7, we will create a partition file that specifies the caracters in each of the 3 codon positions.
+To choose different models for different partitions, and partition schemes, we need to specify the character sets that correspond to different partitions. Ideally, we should define the partitions in the most granular and biologically meaningful way possible. This will typically involve separating introns from CDS, and splitting CDS into the three codon positions. For the MCM7, we will create a partition file that specifies the caracters in each of the 3 codon positions.
 
-In the terminal tab that for which the working directory is on your local machine, create a new file for the partitions:
+In the terminal tab for which the working directory is on your local machine, create a new file for the partitions:
 
 ```sh
 touch class_activities/week6/alignments/mcm7_partitions.txt
 ```
 
-Open it with the nano editor, and add define the partittions as follows:
+Open it with the nano editor, and define the partittions as follows:
 
 ```
 DNA, first = 1-537\3
@@ -124,7 +126,7 @@ DNA, second = 2-537\3
 DNA, third = 3-537\3
 ```
 
-Remember that we exported the FASTA file version of the MCM7 alignment and removed the excluded sites. So, all included sites are coding. Since the exported alignment has 537 sites, all partitions are defined in terms of 537 characters. Also, if you look at the original alignment in Mesquite, you will see that the included nucleotide is coding, and it corresponds to codon position 1. That is why the first character in the partition named "first" starts at position 1. 
+Remember that we exported the FASTA file version of the MCM7 alignment and removed the excluded sites. So, all included sites are coding. Since the exported alignment has 537 sites, all partitions are defined in terms of 537 characters. Also, if you look at the original alignment in Mesquite, you will see that the first included nucleotide is coding, and it corresponds to codon position 1. That is why the first character in the partition named "first" starts at position 1. 
 
 Close, and save the file. This partition definition is currently in the RAxML format, but you can see that the codon position definitions use the same syntax as the NEXUS format.
 
@@ -147,7 +149,7 @@ iqtree -s class_activities/week6/alignments/Lecanoraceae_v8_MCM7.fas \
 
 The two new options here are `-spp` which we used to indicate the partition file. We are now using the `-m MF+MERGE` option which tells IQ-Tree to run a PartitionFinder analysis and find the best model for each partition using ModelFinder. Finally, we are now specifying how many cores we want IQ-Tree to use for this using the `-nt` option. This analysis will use 2 cpus.
 
-We it's done, we can once again inspect the iqtree report:
+When it's done, we can once again inspect the iqtree report:
 
 
 ```sh
@@ -178,7 +180,7 @@ The `scripts/week6` folder is where we will store our scripts, `log/week6` is wh
 
 ### Maximum Likelihood ToL with severe model violation
 
-We are going to be using a concatenated protein alignment of 35 core genes and 81 taxa from bacterial, archaea, an eukaryotic lineages that was assembled by [Da Cunha et al., 2017](https://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1006810&type=printable) and later re-analyzed by [Williams et al,. 2020](https://www.nature.com/articles/s41559-019-1040-x). Both studies were concerned with figuring out the number of domains of life, with two competing hypothesis. The 3D (three domain) hypothesis, where Bacteria, Archaea, and Eukarya each comprise their own domain; and the 2D (two domain) hypothesis, where Eukarya evolved from within Archaea forming one domain, and Bacteria is separate.
+We are going to use a concatenated protein alignment of 35 core genes and 81 taxa from bacterial, archaea, an eukaryotic lineages that was assembled by [Da Cunha et al., 2017](https://journals.plos.org/plosgenetics/article/file?id=10.1371/journal.pgen.1006810&type=printable) and later re-analyzed by [Williams et al,. 2020](https://www.nature.com/articles/s41559-019-1040-x). Both studies were concerned with figuring out the number of domains of life, with two competing hypothesis. The 3D (three domain) hypothesis, where Bacteria, Archaea, and Eukarya each comprise their own domain; and the 2D (two domain) hypothesis, where Eukarya evolved from within Archaea forming one domain, and Bacteria is separate.
 
 First, we are going to infer a maximum likelihood tree for this dataset under a a very basic–and in all likelihood innapropriate– model of amino acid exchangeabilities (BLOSUM62), and without considering any sort of heterogeneity.
 
@@ -208,7 +210,7 @@ iqtree -s class_activities/week6/alignments/35_noEF2.fas \
  -m BLOSUM62 -nt 8
 ```
 
-Exit and sava the file with the same name. Then, submit the job with the script:
+Exit and save the file with the same name. Then, submit the job with the script:
 
 ```
 sbatch scripts/week6/tol_blosum62.sh
@@ -264,8 +266,82 @@ Once the two jobs are completed, pull the trees folder to check the reports and 
 scp -r YOURNETID@dcc-login.oit.duke.edu:/hpc/group/bio556l-s23/YOURNETID/class_activities/week6/trees class_activities/week6
 ```
 
+### ToL with best model and bootstrap analysis
+
+#### Considering site-homogeneous models only
+
+We are now going to create a script for IQ-Tree to find the best substitution model, then infer the maximum likelihood tree, and do an UltraFast bootstrap analysis.
+
+Create a file for the script:
+
+```sh
+scripts/week6/tol_site_homo_ml.sh
+```
+
+Inside the nano editor, type the following:
 
 
+```sh
+#!/bin/bash
+
+#SBATCH --mem-per-cpu=4G  # adjust as needed
+#SBATCH -c 8 # number of threads per process
+#SBATCH --output=log/week6/tol_site_homo_ml.out
+#SBATCH --error=log/week6/tol_site_homo_ml.err
+#SBATCH --partition=scavenger
+
+# IQ-tree module
+module load IQ-TREE/1.6.12
+# Run Iq-tree
+iqtree -s class_activities/week6/alignments/35_noEF2.fas \
+ -pre class_activities/week6/trees/tol_site_homo_ml
+ -m MFP -bb 1000 -nt 8
+```
+The `-MFP` flag stands for ModelFinder Plus, which indicates that the search for the best model will be followed by a maximum likelihood search. The `-bb 1000` flag is to conduct a UFBoot analyses with 1000 replicates.
+
+Submit the job:
+
+```
+sbatch scripts/week6/tol_site_homo_ml.sh
+```
+
+#### Considering site-heterogeneous models only
+
+Now, we are going to do the same kind of analyses, but we are going to consider site-heterogeneous models. I will explain what these are in class.
+
+Create a file for the script:
+
+```sh
+scripts/week6/tol_site_hete_ml.sh
+```
+
+Inside the nano editor, type the following:
+
+```
+#!/bin/bash
+
+#SBATCH --mem-per-cpu=4G  # adjust as needed
+#SBATCH -c 12 # number of threads per process
+#SBATCH --output=log/week6/tol_site_hete_ml.out
+#SBATCH --error=log/week6/tol_site_hete_ml.err
+#SBATCH --partition=scavenger
+
+# IQ-tree module
+module load IQ-TREE/1.6.12
+# Run Iq-tree
+iqtree -s class_activities/week6/alignments/35_noEF2.fas \
+ -pre class_activities/week6/trees/tol_site_hete \
+ -m MFP -bb 1000 -nt 12 \
+ -madd LG+C10,LG+C20,LG+C40,LG+C60,LG+C10+F,LG+C20+F,LG+C40+F,LG+C60+F,LG+C10+G4,LG+C20+G4,LG+C40+G4,LG+C60+G4,LG+C10+F+G4,LG+C20+F+G4,LG+C40+F+G4,LG+C60+F+G4
+```
+
+Submit the job:
+
+```
+sbatch scripts/week6/tol_site_hete_ml.sh
+```
+
+We will leave these two jobs running as they will take several days and check the results later.
 
 
 
