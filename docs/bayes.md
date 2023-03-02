@@ -4,8 +4,6 @@
 
 * **[Posterior sampling of gene trees using MrBayes and SLURM arrays](#MB)**
 * **[Sampling from the Prior using MrBayes](#MBP)**
-* **[ToL inference with empirical profile mixtures of amino acid frequencies in PhyloBayes3](#PBE)**
-* **[ToL inference with the CAT-GTR model of PhyloBayes3](#PBI)**
 
 
 <a name="MB"></a>
