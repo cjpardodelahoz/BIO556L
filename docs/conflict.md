@@ -90,7 +90,7 @@ iqtree -s class_activities/week8/alignments/nostocales32_concat.nex \
 Submit the job:
 
 ```sh
-sbatch sbatch scripts/week8/ml_concat_nostocales32.sh
+sbatch scripts/week8/ml_concat_nostocales32.sh
 ```
 This one will take some time, so let's go to the next section and then we will compare the results. 
 
@@ -169,7 +169,7 @@ Now, let's check that all the trees were converted by counting how many `.nw` fi
 # Count .nw files
 ls class_activities/week8/trees/bayes_single/*.nw | wc -l
 # Check one to see format
-nano nano class_activities/week8/trees/bayes_single/118at1161_subset1_ng.nw
+nano class_activities/week8/trees/bayes_single/118at1161_subset1_ng.nw
 ```
 
 Now that we have them all in the right format, let's put them all in a single file using `cat`. This will be our input for ASTRAL:
