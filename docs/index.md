@@ -18,3 +18,6 @@ We are then going to look at different ways of selecting models of sequence evol
 [Bayesian Phylogenetic Inference](https://cjpardodelahoz.github.io/BIO556L/bayes)
 
 
+## Sources of Phylogenetic incongruence
+
+[Species Trees and Gene Tree Heterogeneity due to ILS](https://cjpardodelahoz.github.io/BIO556L/conflict)
