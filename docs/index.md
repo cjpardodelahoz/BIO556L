@@ -20,4 +20,6 @@ We are then going to look at different ways of selecting models of sequence evol
 
 ## Sources of Phylogenetic Incongruence
 
+[Species trees with SVDQuartets (Dave Swofford guest tutorial)](https://phylosolutions.com/tutorials/wh2022-svdq-astral/species-trees-tutorial.html)
+
 [Species Trees and Gene Tree Heterogeneity due to ILS](https://cjpardodelahoz.github.io/BIO556L/conflict)
