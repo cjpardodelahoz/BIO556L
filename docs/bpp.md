@@ -1,18 +1,8 @@
 # Joint Species Tree Estimation and Species Delimitation with BPP
 
-## Contents
-
-* **[Inferring a concatenated tree with maximum likelihood](#ML)**
-* **[Inferring a summary species tree with ASTRAL](#AS)**
-
 This lab is based on a tutorial by the BPP developers that was published as [chapter](https://hal.inria.fr/PGE/hal-02536475) on the book [Phylogenetics in the Genomic Era](https://hal.inria.fr/PGE/hal-02535070v1) (which I highly recommend). The book chapter has a thorough description of the steps and configurations which we will go over in class but I will not repeat them here. I  only made sligth modifications to accomodate it for our cluster.
 
 Check out the [BPP GitHub repository](https://github.com/bpp/bpp) for more resources on this tool, including publications and software manual.
-
-
-<a name="ML"></a>
-## Inferring a concatenated tree with maximum likelihood
-
 
 ### Getting the data and preparing the directory structure
 
