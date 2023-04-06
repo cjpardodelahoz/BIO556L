@@ -20,6 +20,12 @@ We are then going to look at different ways of selecting models of sequence evol
 
 ## Sources of Phylogenetic Incongruence
 
-[Species trees with SVDQuartets (Dave Swofford guest tutorial)](https://phylosolutions.com/tutorials/wh2022-svdq-astral/species-trees-tutorial.html)
+Now we will dive into different biological sources of phylogenetic incongruence and the methods that have been developed to account for it in inference.
+
+[Species Trees with SVDQuartets (Dave Swofford guest tutorial)](https://phylosolutions.com/tutorials/wh2022-svdq-astral/species-trees-tutorial.html)
 
 [Species Trees and Gene Tree Heterogeneity due to ILS](https://cjpardodelahoz.github.io/BIO556L/conflict)
+
+## Species delimitation
+
+[Joint Species Tree Estimation and Species Delimitation with BPP](https://cjpardodelahoz.github.io/BIO556L/bpp)
