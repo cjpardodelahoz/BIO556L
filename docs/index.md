@@ -26,6 +26,8 @@ Now we will dive into different biological sources of phylogenetic incongruence 
 
 [Species Trees and Gene Tree Heterogeneity due to ILS](https://cjpardodelahoz.github.io/BIO556L/conflict)
 
+[Phylogenetic Network Inference with SNaQ](https://cjpardodelahoz.github.io/BIO556L/snaq)
+
 ## Species delimitation
 
 [Joint Species Tree Estimation and Species Delimitation with BPP](https://cjpardodelahoz.github.io/BIO556L/bpp)
