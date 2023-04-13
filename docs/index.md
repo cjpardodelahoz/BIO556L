@@ -31,3 +31,9 @@ Now we will dive into different biological sources of phylogenetic incongruence 
 ## Species delimitation
 
 [Joint Species Tree Estimation and Species Delimitation with BPP](https://cjpardodelahoz.github.io/BIO556L/bpp)
+
+## Divergence Time Estimation
+
+[BEAST Tutorial](https://beast2-dev.github.io/beast-docs/beast2/DivergenceDating/DivergenceDatingTutorial.html)
+
+[Download Beast version 2.3.2](https://github.com/CompEvol/beast2/releases?page=3)
